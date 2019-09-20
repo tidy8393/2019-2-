@@ -1,63 +1,91 @@
 # 20190916에 진행된 아두이노와 프로세싱을 활용한 시리얼 테스트입니다.
 
 ### 아두이노 코드
-
+<br>
+<br>
 void setup() { 
 <br>
   Serial.begin(9600); // 초당 9600비트로 통신하겠다.
+  <br>
 }
+<br>
+<br>
  
 void loop() {
+<br>
   int con = analogRead(A0); // 아날로그 핀(A0)에서 데이터를 받음
-  con = map(con, 0, 1023, 0, 600); 
+  <br>
+  con = map(con, 0, 1023, 0, 600);
+  <br>
   // 가변저항의 데이터 범위인 0~1023을 화면에 출력할 크기인 0~600으로 변환
+  <br>
   Serial.print(con); //시리얼 통신으로 보내기
+  <br>
   delay(100); //0.1초마다 한번씩 데이터를 보내게 설정
+  <br>
 }
-
-
+<br>
+<br>
+<br>
+<br>
 ### 프로세싱코드
-
+<br>
+<br>
 import processing.serial.*; // Use Serial Communication
-
+<br>
 Serial p; // prepare definition
-
+<br>
 void setup(){
-
+<br>
   size(600,600); // set screen size
-
+<br>
   p = new Serial(this,"COM6",9600);
-  
-
+  <br>
 }
-
+<br>
+<br>
 void draw(){ 
-
+<br>
   if(p.available()>0){ //if serial communications are available
-
-
+<br>
     String m = p.readString();  // accept data from serial
+    <br>
     int a = int(m.trim()); // convert String to int
+    <br>
     println(a); // print a value
+    <br>
     rect(0,0,600,600); //set rectangular size
+    <br>
     fill(255,0,0); // fill rectangular red
+    <br>
     if(a != 0) // if a value is not 0
-    {
-     rect(0,0,a,600); // set rectangular width value a
-     fill(255);   // fill rectangular white
-     noStroke(); // without boader line
-    }
     
+    <br>
+    {
+     
+     <br>
+     rect(0,0,a,600); // set rectangular width value a
+     
+     <br>
+     fill(255);   // fill rectangular white
+     <br>
+     noStroke(); // without boader line
+    <br>
+    }
+    <br>
   }
-  
+  <br>
   ##### 프로세싱의 경우 한글입력시 글자가 깨져서 영어로 주석을 달았습니다.
-  
+<br>
+<br>
+<br>
+<br>
   
   
   
   ### 시나리오 및 작성소감
-  
-  
+  <br>
+  <br>
   예전에 아두이노를 배우고 활용 할 때, 시리얼 통신을 사용해본 적이 있습니다.
   
   아두이노에서 받아들인 값을 통신을 통해 컴퓨터에서 볼 수 있다는 점이 정말 신기했습니다.
