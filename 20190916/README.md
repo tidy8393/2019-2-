@@ -2,7 +2,8 @@
 
 ### 아두이노 코드
 
-void setup() {
+void setup() { 
+<br>
   Serial.begin(9600); // 초당 9600비트로 통신하겠다.
 }
  
