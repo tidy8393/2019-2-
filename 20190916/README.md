@@ -17,7 +17,7 @@ void loop() {
   <br>
   con = map(con, 0, 1023, 0, 600);
   <br>
-  // 가변저항의 데이터 범위인 0~1023을 화면에 출력할 크기인 0~600으로 변환
+  // 가변저항의 데이터 범위인  0 에서 1023을 화면에 출력할 크기인 0 에서 600으로 변환
   <br>
   Serial.print(con); //시리얼 통신으로 보내기
   <br>
@@ -47,32 +47,32 @@ void setup(){
 void draw(){ 
 <br>
   if(p.available()>0){ //if serial communications are available
-<br>
+
     String m = p.readString();  // accept data from serial
-    <br>
+   
     int a = int(m.trim()); // convert String to int
-    <br>
+    
     println(a); // print a value
-    <br>
+   
     rect(0,0,600,600); //set rectangular size
-    <br>
+    
     fill(255,0,0); // fill rectangular red
-    <br>
+   
     if(a != 0) // if a value is not 0
     
-    <br>
+ 
     {
      
-     <br>
+   
      rect(0,0,a,600); // set rectangular width value a
      
-     <br>
+     
      fill(255);   // fill rectangular white
-     <br>
+    
      noStroke(); // without boader line
-    <br>
+    
     }
-    <br>
+    
   }
   <br>
   ##### 프로세싱의 경우 한글입력시 글자가 깨져서 영어로 주석을 달았습니다.
