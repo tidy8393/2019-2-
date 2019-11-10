@@ -3,52 +3,95 @@
 ### 아두이노 코드
 
 void setup(){
+
   Serial.begin(9600); 
+  
   pinMode(12, OUTPUT);
+  
 }
+
 int i;
+
 void loop(){
+
   if(Serial.available()>0){
+  
     String m = Serial.readString();
+    
     if(m.indexOf("1")==0) digitalWrite(12, HIGH);
+    
     if(m.indexOf("0")==0) digitalWrite(12, LOW);
+    
     if(m.indexOf("2")==0)
+    
     {
+    
       for(i = 0; i < 5; i++)
+      
       {
+      
       digitalWrite(12, HIGH);
+      
       delay(150);
+      
       digitalWrite(12, LOW);
+      
       delay(150);
+      
       }
+      
     }
+    
   }
+  
 }
 
 ### 프로세싱 코드
 
 import processing.net.*;
+
 import processing.serial.*;
+
 Serial p;
+
 Server s;
+
 Client c;
+
 void setup(){
+
   s = new Server(this, 12343);
+  
   p = new Serial(this, "COM6", 9600); 
+  
   size(1000,1000);
+  
 }
+
 void draw(){
+
   c = s.available();
+  
   if(c!=null){
+  
     String m = c.readString();
+    
     int n = m.length()-1;  
+    
     m = m.substring(n); 
+    
     println(m);  
+    
     p.write(m); 
-    if(m.indexOf("1")==0) background(255,0,0);  
+    
+    if(m.indexOf("1")==0) background(255,0,0);
+    
     if(m.indexOf("0")==0) background(0,255,0);
+    
     if(m.indexOf("2")==0) background(0,0,255);
+    
   }
+  
 }
 
 
